@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Application {
@@ -37,8 +38,12 @@ public class Application {
 	@Column(name="EXPIRE_DATE")
 	Date expireDate;
 	
+	@OneToOne
+	Interview interview;
+	
+
 	public Application(int applicationId, String name, String qualification, String experience,
-			String statusOfApplication, String email, Date expireDate) {
+			String statusOfApplication, String email, Date expireDate, Interview interview) {
 		super();
 		this.applicationId = applicationId;
 		this.name = name;
@@ -47,6 +52,7 @@ public class Application {
 		this.statusOfApplication = statusOfApplication;
 		this.email = email;
 		this.expireDate = expireDate;
+		this.interview = interview;
 	}
 
 	public Application() {
@@ -109,6 +115,13 @@ public class Application {
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
+	
+	public Interview getInterview() {
+		return interview;
+	}
 
+	public void setInterview(Interview interview) {
+		this.interview = interview;
+	}
 	
 }

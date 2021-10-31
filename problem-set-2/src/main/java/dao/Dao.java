@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 
 import entity.Application;
+import entity.Interview;
+
 
 
 @Repository
@@ -68,20 +69,22 @@ public class Dao {
 		return applist;
 	}
 	
-	public void delete() {
-		List<Application> applicationInside = new ArrayList<Application>();
-		applicationInside = getAllApplication();
-		Calendar c= Calendar.getInstance();
-		c.add(Calendar.DATE, 30);
-		Date d=c.getTime();
-		Application application = new Application();
-		for (Application i:applicationInside) {
-			if(d.equals(application.getExpireDate())) {
-				application=(Application)applicationInside;
-				application.setStatusOfApplication("Declined by system");
-				updateApplication(application,application.getApplicationId());
-			}
+	
+	
+	public void assign(List<Application> applist,Date date) {
+		Calendar cal = Calendar.getInstance();
+		  cal.setTime(date);
+		  int j=0;
+		for (Application i:applist) {
+			cal.add(Calendar.MINUTE, j);
+			date=cal.getTime();
+			Interview interview = new Interview();
+			interview.setApplication(i);
+			interview.setInterviewDate(date);
+			j=j+30;
 		}
 	}
+
+	
 	
 }

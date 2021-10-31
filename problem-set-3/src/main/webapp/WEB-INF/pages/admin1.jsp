@@ -29,6 +29,7 @@
 			
 			</div>
 			</form>
+	<form action="any"></form>
 	<table class="table">
   <thead class="thead-light">
     <tr>      
@@ -41,7 +42,7 @@
       <th colspan="1">ACTION</th>
     </tr>
   </thead>
-    <c:forEach var="app" items="${applist}">
+     <c:forEach var="app" items="${applist}"> 
   <tr>
   	<td> ${app.applicationId}</td>
       	<td>${app.name}</td>
@@ -53,6 +54,7 @@
        	&experience=${app.experience}&statusOfApplication=${app.statusOfApplication}">Edit</a></td>
       	
   </tr>
+  </c:forEach>
   </table>
 </body>
 </html>

@@ -29,7 +29,9 @@
 			
 			</div>
 			</form>
-	<form action="any"></form>
+	<form action="time" method="get">
+		<button type="submit" value="sortEmp" class="btn btn-primary">Interview List</button>
+	</form>
 	<table class="table">
   <thead class="thead-light">
     <tr>      

@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,17 +17,20 @@ import org.springframework.web.servlet.ModelAndView;
 import dao.Dao;
 import entity.Application;
 
+
 @Controller
 @Transactional
 public class ResumeController {
 
 	@Autowired
 	Application application;
+	
+	@Autowired
 	Dao dao;
 	
+		
 	@RequestMapping(value="/registration",method = RequestMethod.GET )
 	public ModelAndView register() {
-		dao.delete();
 		return new ModelAndView("home");
 		
 	}
@@ -41,6 +47,10 @@ public class ResumeController {
 		application.setEmail(email);
 		application.setExperience(experience);
 		application.setStatusOfApplication("FALSE");
+		Calendar c= Calendar.getInstance();
+		c.add(Calendar.DATE, 30);
+		Date d=c.getTime();
+		application.setExpireDate(d);
 		dao = new Dao();
 		dao.createApplication(application);
 		return new ModelAndView("home");
@@ -69,7 +79,7 @@ public class ResumeController {
 		
 	}
 	
-	@RequestMapping(value ="/sortEmp" , method = RequestMethod.POST)
+	@RequestMapping(value ="/sort" , method = RequestMethod.POST)
 	public ModelAndView sortApplication() {
 		List<Application> applist = dao.getAllApplication();
 		List<Application> sortedAPPList = dao.sortApplicationByName(applist);
@@ -78,4 +88,14 @@ public class ResumeController {
 		
 	}
 	
+	@RequestMapping(value ="/time" , method = RequestMethod.POST)
+	public ModelAndView interviewTime() {
+		List<Application> applist = dao.getAllApplication();
+		Calendar c= Calendar.getInstance();
+		Date d=c.getTime();
+		dao.assign(applist, d);
+		return new ModelAndView("home");
+		
+	}
+
 }

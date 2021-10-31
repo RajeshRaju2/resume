@@ -37,7 +37,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>entity.Application</value>
-				<value>entity.StatusApplicationHistory</value>
+				<value>entity.Interview</value>				
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -54,7 +54,6 @@
 	</bean>
 	
 	<bean id="application" class="entity.Application"/>
-	<bean id="statusApplicationHistory" class="entity.StatusApplicationHistory"/>
-	<bean id="resumeController" class="controller.ResumeController"/>
+	<bean id="interview" class="entity.Interview"/>
 	<bean id="dao" class="dao.Dao"/>		
 </beans>
