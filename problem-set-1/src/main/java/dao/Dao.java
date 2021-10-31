@@ -77,10 +77,11 @@ public class Dao {
 		Application application = new Application();
 		for (Application i:applicationInside) {
 			if(d.equals(application.getExpireDate())) {
-				application=(Application)applicationInside;
+				application=i;
 				application.setStatusOfApplication("Declined by system");
 				updateApplication(application,application.getApplicationId());
 			}
+		
 		}
 	}
 	
