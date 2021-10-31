@@ -1,10 +1,13 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Application {
@@ -29,8 +32,11 @@ public class Application {
 	@Column(name="EMAIL")
 	private String email;
 	
+	@OneToMany
+	private List<StatusApplicationHistory> statusApplicationHistory;
+	
 	public Application(int applicationId, String name, String qualification, String experience,
-			String statusOfApplication, String email) {
+			String statusOfApplication, String email, List<StatusApplicationHistory> statusApplicationHistory) {
 		super();
 		this.applicationId = applicationId;
 		this.name = name;
@@ -38,13 +44,14 @@ public class Application {
 		this.experience = experience;
 		this.statusOfApplication = statusOfApplication;
 		this.email = email;
+		this.statusApplicationHistory = statusApplicationHistory;
 	}
 
 	public Application() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -84,6 +91,15 @@ public class Application {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<StatusApplicationHistory> getStatusApplicationHistory() {
+		return statusApplicationHistory;
+	}
+
+	public void setStatusApplicationHistory(List<StatusApplicationHistory> statusApplicationHistory) {
+		this.statusApplicationHistory = statusApplicationHistory;
+	}
+	
 	
 	
 	

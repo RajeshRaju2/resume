@@ -18,7 +18,7 @@
 				<input type="password" class="form-control" id="lblpass" name="password"
 					placeholder="Enter PassWord">
 			</div>
-				<button type="submit" class="btn btn-primary">Sign-in</button>
+			<button type="submit" class="btn btn-primary">Sign-in</button>
 			</form>
 </body>
 </html>
